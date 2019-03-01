@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <canvas id="fullField" width="1200" height="900" style="background: rgb(25, 111, 12)"></canvas>
+    <canvas id="halfField" width="900" height="600" style="background: rgb(25, 111, 12)"></canvas>
+
+    <script>
+// NOTE(map) : The scaling on the flip goes like this:
+/*
+ * Full field -> 10px = 1 yd
+ * 1200px -> 120 yd
+ * 900px -> 90 yd
+ * Width -> Length of pitch
+ * Height -> Width of pitch
+ */
+
+// Canvas setup.
+var fullField = false;
+if (fullField) {
+    document.getElementById("halfField").style.display = 'none';
+}
+else {
+    document.getElementById("fullField").style.display = 'none';    
+}
+var c = fullField ? document.getElementById("fullField") : document.getElementById("halfField");
+var ctx = c.getContext("2d");
+
+
+// Misc variables.
+var homeTeam = [];
+var awayTeam = [];
+for (let i = 0; i < 11; ++i) {
+    var o = new Image();
+    o.src = "blue_o.png";
+    var x = new Image();
+    x.src = "red_x.png";
+
+    homeTeam.push(o);
+    awayTeam.push(x);
+}
+
+
+// Stylings for stroke.
+ctx.strokeStyle = "rgb(0,0,0)";
+ctx.lineWidth = 5;
+
+
+// Draw Full field start positions.
+if (fullField) {
+    drawFullField(ctx);
+    drawFullFieldAwayFourFourTwo(ctx);
+    drawFullFieldHomeFourFourTwo(ctx);
+}
+// Draw Half field start positions.
+else {
+    drawLeftHalfField(ctx);
+    drawHalfFieldHomeFourFourTwo(ctx);
+}
+
+function drawFullField(ctx) {
+    // Draw center circle.
+    ctx.beginPath();
+    ctx.arc(600, 450, 100, 0, 2*Math.PI);
+    ctx.stroke();
+
+    // Draw center line.
+    ctx.moveTo(600, 0);
+    ctx.lineTo(600, 900);
+    ctx.stroke();
+
+    // Draw left penalty box.
+    // Left side of box
+    ctx.moveTo(0, 271);
+    ctx.lineTo(180, 271);
+    ctx.stroke();
+    // Right side of box.
+    ctx.moveTo(0, 629);
+    ctx.lineTo(180, 629);
+    ctx.stroke();
+    // Top of box.
+    ctx.moveTo(180, 271);
+    ctx.lineTo(180, 629);
+    ctx.stroke();
+    
+    // Draw right penatly box.
+    // Left side of box
+    ctx.moveTo(1200, 271);
+    ctx.lineTo(1020, 271);
+    ctx.stroke();
+    // Right side of box.
+    ctx.moveTo(1200, 629);
+    ctx.lineTo(1020, 629);
+    ctx.stroke();
+    // Top of box.
+    ctx.moveTo(1020, 271);
+    ctx.lineTo(1020, 629);
+    ctx.stroke();
+}
+
+
+function drawLeftHalfField(ctx) {
+    // Draw center circle.
+    ctx.beginPath();
+    ctx.arc(450, 600, 100, 0, 2*Math.PI);
+    ctx.stroke();
+
+    // Draw left penalty box.
+    // Left side of box
+    ctx.moveTo(271, 0);
+    ctx.lineTo(271, 180);
+    ctx.stroke();
+    // Right side of box.
+    ctx.moveTo(629, 0);
+    ctx.lineTo(629, 180);
+    ctx.stroke();
+    // Top of box.
+    ctx.moveTo(271, 180);
+    ctx.lineTo(629, 180);
+    ctx.stroke();
+}
+
+// Always draws an image at 20px by 20px for now.
+// Draws from center of image as well.
+function drawImage(ctx, img, x, y) {
+    img.onload=function(){
+	ctx.drawImage(img, x-10, y-10, 20, 20);
+    };
+}
+
+function drawFullFieldAwayFourFourTwo(ctx) {
+    drawImage(ctx, awayTeam[0], 890, 100);
+    drawImage(ctx, awayTeam[1], 920, 350);
+    drawImage(ctx, awayTeam[2], 920, 550);
+    drawImage(ctx, awayTeam[3], 890, 800);
+    drawImage(ctx, awayTeam[4], 790, 100);
+    drawImage(ctx, awayTeam[5], 810, 320);
+    drawImage(ctx, awayTeam[6], 810, 580);
+    drawImage(ctx, awayTeam[7], 790, 800);
+    drawImage(ctx, awayTeam[8], 680, 350);
+    drawImage(ctx, awayTeam[9], 680, 550);
+}
+
+function drawFullFieldHomeFourFourTwo() {
+    drawImage(ctx, homeTeam[0], 310, 100);
+    drawImage(ctx, homeTeam[1], 280, 350);
+    drawImage(ctx, homeTeam[2], 280, 550);
+    drawImage(ctx, homeTeam[3], 310, 800);
+    drawImage(ctx, homeTeam[4], 410, 100);
+    drawImage(ctx, homeTeam[5], 390, 320);
+    drawImage(ctx, homeTeam[6], 390, 580);
+    drawImage(ctx, homeTeam[7], 410, 800);
+    drawImage(ctx, homeTeam[8], 520, 350);
+    drawImage(ctx, homeTeam[9], 520, 550);
+}
+
+function drawHalfFieldHomeFourFourTwo() {
+    drawImage(ctx, homeTeam[0], 100, 310);
+    drawImage(ctx, homeTeam[1], 350, 280);
+    drawImage(ctx, homeTeam[2], 550, 280);
+    drawImage(ctx, homeTeam[3], 800, 310);
+    drawImage(ctx, homeTeam[4], 100, 410);
+    drawImage(ctx, homeTeam[5], 320, 390);
+    drawImage(ctx, homeTeam[6], 580, 390);
+    drawImage(ctx, homeTeam[7], 800, 410);
+    drawImage(ctx, homeTeam[8], 350, 520);
+    drawImage(ctx, homeTeam[9], 550, 520);
+
+}
+      
+
+    </script>
+
+  </body>
+</html>

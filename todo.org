@@ -1,0 +1,24 @@
+* TODO Look into whether or not I need a new canvas or just scale and draw differently
+  I'm currently creating two canvases that are the exact same size.  Couldn't I just 
+  clear the canvas on a toggle and put the images up there?
+
+* TODO Check into WebGL vs Canvas
+  Seems like WebGL is the better option for a rewrite done correctly.
+
+* TODO Set up Node
+  Server to store all the stuff I need.  This requires some planning with the use of a
+  database and will be outlined further.
+
+* TODO Implement easy animations'[0/5]'
+  This is a not an inclusive list but a list of simple algorithms to get it going:
+  1. [ ] When the ball is lost
+  2. [ ] When the ball is reovered defensive third
+  3. [ ] When the ball is reovered middle third
+  4. [ ] When the ball is reovered offensive third
+  5. [ ] Shading defensively
+
+* TODO Create a basic soccer math library.
+  This is so I don't lose my mind trying to convert one way or the other for half field
+  vs full field rendering.  The X/Y are swapped between the two and the half field has 
+  a 1.5x multiplier to it's dims
+
